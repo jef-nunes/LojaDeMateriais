@@ -1,3 +1,4 @@
+USE `LojaDeMateriais` ;
 INSERT INTO cliente(nome, email, telefone, estado, cidade)
 VALUES
 ("Joao Silva", "joao@exemplo.com", "07111111111", "BA", "Salvador"),
