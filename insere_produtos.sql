@@ -13,7 +13,7 @@ VALUES
 
 INSERT INTO produto(nome, descricao, disponivel, valor, fk_categoria_produto_id, fk_fornecedor_id)
 VALUES
-("Martelo de Unha", "Martelo de unha com cabo de madeira", 150, 19.90, 2, 1),
+("Martelo", "Martelo de unha com cabo de madeira", 150, 19.90, 2, 1),
 ("Chave de Fenda 6mm", "Chave de fenda com cabo ergonômico", 200, 15.00, 2, 1),
 ("Alicate Universal", "Alicate universal para diversos tipos de trabalhos", 100, 22.50, 2, 1),
 ("Serra Tico-Tico Elétrica", "Serra tico-tico com controle de velocidade", 80, 180.00, 2, 7),
@@ -37,7 +37,6 @@ VALUES
 ("Madeira de Pinus", "Madeira de pinus para estruturação e marcenaria", 120, 22.00, 3, 1),
 ("Pedra Brita", "Pedra brita para concretagem", 250, 40.00, 3, 1);
 
--- Inserção de 10 produtos na categoria "Elétrica" (categoria_produto_id = 4)
 INSERT INTO produto(nome, descricao, disponivel, valor, fk_categoria_produto_id, fk_fornecedor_id)
 VALUES
 ("Fios e Cabos Elétricos", "Fios e cabos elétricos para instalações", 500, 1.50, 4, 1),
