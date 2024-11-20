@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo systemctl start mysql
+sudo ufw enable && systemctl start mysql
