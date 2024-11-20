@@ -1,3 +1,4 @@
+USE `LojaDeMateriais` ;
 INSERT INTO produto(nome, descricao, disponivel, valor, fk_categoria_produto_id, fk_fornecedor_id)
 VALUES
 ("Tinta Acrílica Branca", "Tinta acrílica para parede, acabamento fosco", 100, 45.99, 1, 1),
