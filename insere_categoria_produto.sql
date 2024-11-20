@@ -1,3 +1,4 @@
+USE `LojaDeMateriais` ;
 INSERT INTO categoria_produto(nome, descricao, codigo)
 VALUES
 ("Tintas", "Produtos destinados à pintura e acabamento", "C01"),
