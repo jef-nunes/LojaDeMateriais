@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `LojaDeMateriais`.`fornecedor` (
   `fornecedor_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NULL,
   `email` VARCHAR(255) NULL,
-  `telefone` VARCHAR(11) NULL,
+  `telefone` VARCHAR(20) NULL,
   `estado` CHAR(2) NULL,
   `cidade` VARCHAR(100) NULL,
   PRIMARY KEY (`fornecedor_id`))
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `LojaDeMateriais`.`cliente` (
   `cliente_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NULL,
   `email` VARCHAR(255) NULL,
-  `telefone` VARCHAR(11) NULL,
+  `telefone` VARCHAR(20) NULL,
   `estado` CHAR(2) NULL,
   `cidade` VARCHAR(100) NULL,
   PRIMARY KEY (`cliente_id`))
@@ -44,7 +44,7 @@ ENGINE = InnoDB;
 -- Table `LojaDeMateriais`.`categoria_produto`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `LojaDeMateriais`.`categoria_produto` (
-  `categoria_produto_id` INT UNSIGNED NOT NULL,
+  `categoria_produto_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NULL,
   `descricao` VARCHAR(255) NULL,
   `codigo` VARCHAR(5) NOT NULL,
@@ -56,14 +56,14 @@ ENGINE = InnoDB;
 -- Table `LojaDeMateriais`.`produto`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `LojaDeMateriais`.`produto` (
-  `produto_id` INT UNSIGNED NOT NULL,
+  `produto_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NULL,
   `descricao` VARCHAR(255) NULL,
   `disponivel` INT UNSIGNED NOT NULL,
   `valor` FLOAT UNSIGNED NOT NULL,
   `fk_categoria_produto_id` INT UNSIGNED NOT NULL,
   `fk_fornecedor_id` INT UNSIGNED NOT NULL,
-  PRIMARY KEY (`produto_id`, `fk_categoria_produto_id`, `fk_fornecedor_id`),
+  PRIMARY KEY (`produto_id`),
   INDEX `fk_produto_categoria_produto_idx` (`fk_categoria_produto_id` ASC) VISIBLE,
   INDEX `fk_produto_fornecedor1_idx` (`fk_fornecedor_id` ASC) VISIBLE,
   CONSTRAINT `fk_produto_categoria_produto`
@@ -93,8 +93,8 @@ CREATE TABLE IF NOT EXISTS `LojaDeMateriais`.`venda` (
   INDEX `fk_venda_produto1_idx` (`fk_produto_id` ASC, `fk_produto_categoria_produto_id` ASC, `fk_produto_fornecedor_id` ASC) VISIBLE,
   INDEX `fk_venda_cliente1_idx` (`fk_cliente_id` ASC) VISIBLE,
   CONSTRAINT `fk_venda_produto1`
-    FOREIGN KEY (`fk_produto_id`, `fk_produto_categoria_produto_id`, `fk_produto_fornecedor_id`)
-    REFERENCES `LojaDeMateriais`.`produto` (`produto_id`, `fk_categoria_produto_id`, `fk_fornecedor_id`)
+    FOREIGN KEY (`fk_produto_id`)
+    REFERENCES `LojaDeMateriais`.`produto` (`produto_id`)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT,
   CONSTRAINT `fk_venda_cliente1`
