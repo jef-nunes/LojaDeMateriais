@@ -1,0 +1,130 @@
+database:
+  name: "LojaDeMateriais"
+  charset: "utf8"
+
+tables:
+  - name: "fornecedor"
+    columns:
+      - name: "fornecedor_id"
+        type: "INT UNSIGNED"
+        auto_increment: true
+        primary_key: true
+      - name: "nome"
+        type: "VARCHAR(45)"
+        nullable: true
+      - name: "email"
+        type: "VARCHAR(255)"
+        nullable: true
+      - name: "telefone"
+        type: "VARCHAR(20)"
+        nullable: true
+      - name: "estado"
+        type: "CHAR(2)"
+        nullable: true
+      - name: "cidade"
+        type: "VARCHAR(100)"
+        nullable: true
+
+  - name: "cliente"
+    columns:
+      - name: "cliente_id"
+        type: "INT UNSIGNED"
+        auto_increment: true
+        primary_key: true
+      - name: "nome"
+        type: "VARCHAR(45)"
+        nullable: true
+      - name: "email"
+        type: "VARCHAR(255)"
+        nullable: true
+      - name: "telefone"
+        type: "VARCHAR(20)"
+        nullable: true
+      - name: "estado"
+        type: "CHAR(2)"
+        nullable: true
+      - name: "cidade"
+        type: "VARCHAR(100)"
+        nullable: true
+
+  - name: "categoria_produto"
+    columns:
+      - name: "categoria_produto_id"
+        type: "INT UNSIGNED"
+        auto_increment: true
+        primary_key: true
+      - name: "nome"
+        type: "VARCHAR(45)"
+        nullable: true
+      - name: "descricao"
+        type: "VARCHAR(255)"
+        nullable: true
+      - name: "codigo"
+        type: "VARCHAR(5)"
+        not_null: true
+        unique: true
+
+  - name: "produto"
+    columns:
+      - name: "produto_id"
+        type: "INT UNSIGNED"
+        auto_increment: true
+        primary_key: true
+      - name: "nome"
+        type: "VARCHAR(45)"
+        nullable: true
+      - name: "descricao"
+        type: "VARCHAR(255)"
+        nullable: true
+      - name: "disponivel"
+        type: "INT UNSIGNED"
+        not_null: true
+      - name: "valor"
+        type: "FLOAT UNSIGNED"
+        not_null: true
+      - name: "fk_categoria_produto_id"
+        type: "INT UNSIGNED"
+        not_null: true
+      - name: "fk_fornecedor_id"
+        type: "INT UNSIGNED"
+        not_null: true
+    foreign_keys:
+      - column: "fk_categoria_produto_id"
+        references: "categoria_produto(categoria_produto_id)"
+        on_delete: "RESTRICT"
+        on_update: "CASCADE"
+      - column: "fk_fornecedor_id"
+        references: "fornecedor(fornecedor_id)"
+        on_delete: "RESTRICT"
+        on_update: "CASCADE"
+
+  - name: "venda"
+    columns:
+      - name: "venda_id"
+        type: "INT UNSIGNED"
+        not_null: true
+        primary_key: true
+      - name: "valor_total"
+        type: "FLOAT"
+        nullable: true
+      - name: "fk_produto_id"
+        type: "INT UNSIGNED"
+        not_null: true
+      - name: "fk_produto_categoria_produto_id"
+        type: "INT UNSIGNED"
+        not_null: true
+      - name: "fk_produto_fornecedor_id"
+        type: "INT UNSIGNED"
+        not_null: true
+      - name: "fk_cliente_id"
+        type: "INT UNSIGNED"
+        not_null: true
+    foreign_keys:
+      - column: "fk_produto_id"
+        references: "produto(produto_id)"
+        on_delete: "RESTRICT"
+        on_update: "RESTRICT"
+      - column: "fk_cliente_id"
+        references: "cliente(cliente_id)"
+        on_delete: "RESTRICT"
+        on_update: "CASCADE"
