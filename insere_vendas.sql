@@ -1,3 +1,4 @@
+USE `LojaDeMateriais` ;
 INSERT INTO venda (venda_id, valor_total, fk_produto_id, fk_produto_categoria_produto_id, fk_produto_fornecedor_id, fk_cliente_id) 
 VALUES
 (1, 45.99, 1, 1, 1, 1), -- Joao Silva compra Tinta Acrílica Branca
